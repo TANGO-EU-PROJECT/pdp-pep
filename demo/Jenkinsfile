@@ -20,7 +20,6 @@ pipeline {
         stage('Compile') {
             steps {
                 dir('demo') {
-		sh 'sudo apt install docker-compose'
 		    sh 'java -version'
 		    sh 'echo "JAVA_HOME=$JAVA_HOME"'
 		    sh './gradlew build'
