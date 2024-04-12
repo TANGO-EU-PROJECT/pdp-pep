@@ -57,16 +57,10 @@ pipeline {
         }
 	   stage("Run server"){
 		    steps {
-                script {
-                    // Run docker-compose inside a Docker container
-                    docker.image('docker/compose')
-                        .run('--rm',
-                            '-v /var/run/docker.sock:/var/run/docker.sock',  // Mount Docker socket
-                            '-v $PWD:/workspace',  // Mount current directory
-                            '-w /workspace/demo',  // Set working directory
-                            'up -d')
-                }
-            }
+			     dir('demo') {
+				    sh 'docker-compose up -d'
+				    }
+		    }
 	   }
    }
 }
